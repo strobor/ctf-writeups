@@ -1,0 +1,18 @@
+I64 recvCounter = 0;
+U8 sendBuf[21] = 0x60, 0x6f, 0x73, 0x65, 0x74, 0x68, 0x6f, 0x73, 0x5f, 0x72, 0x65, 0x62, 0x6f, 0x72, 0x6e, 0x5f, 0x77, 0x5f, 0x6e, 0x65, 0x74;
+
+I64 RandI64() {
+	return 0;
+}
+
+I64 TCPSocketReceive(CTCPSocket *tcp_socket, U8 *buffer, I64 length)
+{
+	Print("recvCounter %d\n", recvCounter);
+	if (recvCounter < 21) {
+		buffer[0] = sendBuf[recvCounter];
+	} else {
+		buffer[0] = 0;
+	}
+	recvCounter += 1;
+	return 1;
+}
